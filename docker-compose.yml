@@ -6,10 +6,15 @@ services:
     image: docuseal/docuseal:latest
     ports:
       - 127.0.0.1:8050:3000
+    restart: always
     volumes:
       - ./docuseal:/data/docuseal
     env_file:
       - .env
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
 
   postgres:
     image: postgres:15
